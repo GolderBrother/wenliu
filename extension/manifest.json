@@ -1,0 +1,151 @@
+{
+  "manifest_version": 3,
+  "name": "文流助手",
+  "version": "1.4.0",
+  "description": "文流助手 - 智能检测剪贴板内容并填充到公众号编辑器",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "cookies",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://mp.weixin.qq.com/*",
+    "http://mp.weixin.qq.com/*",
+    "https://zhuanlan.zhihu.com/*",
+    "https://juejin.cn/*",
+    "https://wx.zsxq.com/*",
+    "http://localhost:3000/*",
+    "https://localhost:3000/*",
+    "http://localhost:3001/*",
+    "https://localhost:3001/*",
+    "https://wenliu.app/*",
+    "http://wenliu.app/*",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mp.weixin.qq.com/*",
+        "http://mp.weixin.qq.com/*"
+      ],
+      "js": [
+        "core/event-bus.js",
+        "core/config-service.js",
+        "core/api-service.js",
+        "core/utils-service.js",
+        "core/content-service.js",
+        "core/platform-detector.js",
+        "core/platform-manager.js",
+        "core/platform-registry.js",
+        "core/plugin-manager.js",
+        "plugins/config.js",
+        "plugins/base-platform.js",
+        "plugins/platforms/wechat.js",
+        "ui/panel.js",
+        "ui/features.js",
+        "core/app.js",
+        "main.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "https://zhuanlan.zhihu.com/write*",
+        "https://zhuanlan.zhihu.com/p/*/edit*"
+      ],
+      "js": [
+        "core/event-bus.js",
+        "core/config-service.js",
+        "core/api-service.js",
+        "core/utils-service.js",
+        "core/content-service.js",
+        "core/platform-detector.js",
+        "core/platform-manager.js",
+        "core/platform-registry.js",
+        "core/plugin-manager.js",
+        "plugins/config.js",
+        "plugins/base-platform.js",
+        "plugins/platforms/zhihu.js",
+        "ui/panel.js",
+        "ui/features.js",
+        "core/app.js",
+        "main.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "https://juejin.cn/editor/*"
+      ],
+      "js": [
+        "core/event-bus.js",
+        "core/config-service.js",
+        "core/api-service.js",
+        "core/utils-service.js",
+        "core/content-service.js",
+        "core/platform-detector.js",
+        "core/platform-manager.js",
+        "core/platform-registry.js",
+        "core/plugin-manager.js",
+        "plugins/config.js",
+        "plugins/base-platform.js",
+        "plugins/platforms/juejin.js",
+        "ui/panel.js",
+        "ui/features.js",
+        "core/app.js",
+        "main.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "https://wx.zsxq.com/group/*",
+        "https://wx.zsxq.com/article?groupId=*"
+      ],
+      "js": [
+        "core/event-bus.js",
+        "core/config-service.js",
+        "core/api-service.js",
+        "core/utils-service.js",
+        "core/content-service.js",
+        "core/platform-detector.js",
+        "core/platform-manager.js",
+        "core/platform-registry.js",
+        "core/plugin-manager.js",
+        "plugins/config.js",
+        "plugins/base-platform.js",
+        "plugins/platforms/zsxq.js",
+        "ui/panel.js",
+        "ui/features.js",
+        "core/app.js",
+        "main.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_title": "文流助手",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
